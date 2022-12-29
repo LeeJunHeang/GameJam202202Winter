@@ -12,7 +12,6 @@ public class ItemGenerator : MonoBehaviour
     float delta = 0;
     int season = 0;  // 공통: 0, 봄: 1, 여름: 2, 가을: 3, 겨울: 4 (게임매니저에서 받아오기)
 
-
     private int[] seasonRatio = new int[100];     // 아이템 확률 합은 총 100%
 
     // Start is called before the first frame update
@@ -51,8 +50,33 @@ public class ItemGenerator : MonoBehaviour
 
             // 아이템 선택
             int dropSeason = seasonRatio[Random.Range(0, 100)];
-            int dropItem = Random.Range(1 * dropSeason, 4 * dropSeason);
+            int dropItem = Random.Range(4 * dropSeason, 4 * dropSeason + 4);
             spriteRenderer.sprite = sprites[dropItem];
+            // 공통
+            if (dropItem == 0) drop.features = [false, false, false, false, true, true, false];         // 눈의 솔
+            else if (dropItem == 1) drop.features = [false, false, false, false, true, true, false];    // 데자바
+            else if (dropItem == 2) drop.features = [false, false, true, false, false, false, false];   // 허니브레드
+            else if (dropItem == 3) drop.features = [false, false, true, false, false, false, false];   // 쿠키
+            // 봄
+            else if (dropItem == 4) drop.features = [false, false, true, false, false, false, false];   // 벚꽃빵
+            else if (dropItem == 5) drop.features = [true, false, false, false, false, false, false];   // 버블티
+            else if (dropItem == 6) drop.features = [false, true, false, true, false, false, false];    // 카푸치노
+            else if (dropItem == 7) drop.features = [true, false, false, false, true, false, false];    // 레몬에이드
+            // 여름
+            else if (dropItem == 8) drop.features = [true, false, false, true, false, false, false];    // 아이스 아메리카노
+            else if (dropItem == 9) drop.features = [true, false, true, false, false, false, false];    // 빙수
+            else if (dropItem == 10) drop.features = [true, false, false, false, true, false, true];    // 민초라떼
+            else if (dropItem == 11) drop.features = [true, false, false, true, false, false, false];   // 아이스 바닐라라떼
+            // 가을
+            else if (dropItem == 12) drop.features = [false, true, false, false, true, false, false];   // 캐모마일 티
+            else if (dropItem == 13) drop.features = [true, false, true, true, false, false, false];    // 아포카토
+            else if (dropItem == 14) drop.features = [false, false, false, true, false, false, false];  // 홍차
+            else if (dropItem == 15) drop.features = [false, false, true, false, false, false, false];  // 샌드위치
+            // 겨울
+            else if (dropItem == 16) drop.features = [false, true, false, true, false, false, false];   // 카페라떼
+            else if (dropItem == 17) drop.features = [false, true, false, true, false, false, false];   // 비엔나 커피
+            else if (dropItem == 18) drop.features = [false, true, true, false, false, false, false];   // 딸기 케이크
+            else if (dropItem == 19) drop.features = [false, true, true, false, false, false, false];   // 붕어빵
             Debug.Log("");
             Debug.Log("계절: " + dropSeason);
             Debug.Log("아이템: " + dropItem);

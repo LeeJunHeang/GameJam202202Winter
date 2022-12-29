@@ -8,6 +8,8 @@ public class ItemController : MonoBehaviour
     Vector2 dir;
     int speed = 2;  // 삭제 예정. 낙하 속도. 게임매니저에서 나이 받아와서 코드에 바로 넣기.
 
+    public bool[] features = new bool[7];
+
     // Start is called before the first frame update
     void Start()
     {
