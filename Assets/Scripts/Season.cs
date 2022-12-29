@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Season : MonoBehaviour
 {
-    int season = 0;
+    int season = 0; //계절 표시 
     int endCount = 0;
 
     float timer;
@@ -13,14 +13,15 @@ public class Season : MonoBehaviour
     float fallTime;
     float winterTime;
     float endYear;
+
     void Start()
     {
         timer = 0.0f;
-        springTime = 0.0f;
-        summerTime = 10.0f;
-        fallTime = 30.0f;
-        winterTime = 40.0f;
-        endYear = 60.0f;
+        springTime = 0.0f; //0~10 봄
+        summerTime = 10.0f; //10~30 여름
+        fallTime = 30.0f; //30~40 가을
+        winterTime = 40.0f; //40~60 겨울
+        endYear = 60.0f; //0으로 초기화. 
         GameObject.Find("BackGround").transform.Find("Spring").gameObject.SetActive(true);
         GameObject.Find("BackGround").transform.Find("Summer").gameObject.SetActive(false);
         GameObject.Find("BackGround").transform.Find("Fall").gameObject.SetActive(false);
