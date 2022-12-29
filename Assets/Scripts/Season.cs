@@ -85,4 +85,10 @@ public class Season : MonoBehaviour
         }
         
     }
+
+    public int getSeasonNum() //계절 반환해주는 함수
+    {
+        return season;
+    }
+
 }

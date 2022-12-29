@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class ItemGenerator : MonoBehaviour
@@ -12,6 +13,7 @@ public class ItemGenerator : MonoBehaviour
     float delta = 0;
 
     public int[] seasonRatio = new int[100];     // 아이템 확률 합은 총 100%
+    int dropItem = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -49,11 +51,12 @@ public class ItemGenerator : MonoBehaviour
 
             // 아이템 선택
             int dropSeason = seasonRatio[Random.Range(0, 100)];
-            int dropItem = Random.Range(4 * dropSeason, 4 * dropSeason + 4);
+            dropItem = Random.Range(4 * dropSeason, 4 * dropSeason + 4);
             spriteRenderer.sprite = sprites[dropItem];
             // 0: 아이스, 1: 핫, 2: 디저트, 3: 카페인, 4: 디카페인, 5: 괴식, 6: 민초
             // 공통
-            if (dropItem == 0) dropController.features = new bool[] {false, false, false, false, true, true, false};         // 눈의 솔
+        
+            if (dropItem == 0) dropController.features = new bool[] {false, false, false, false, true, true, false}; // 눈의 솔
             else if (dropItem == 1) dropController.features = new bool[] { false, false, false, false, true, true, false};    // 데자바
             else if (dropItem == 2) dropController.features = new bool[] { false, false, true, false, false, false, false};   // 허니브레드
             else if (dropItem == 3) dropController.features = new bool[] { false, false, true, false, false, false, false};   // 쿠키
@@ -77,6 +80,26 @@ public class ItemGenerator : MonoBehaviour
             else if (dropItem == 17) dropController.features = new bool[] { false, true, false, true, false, false, false};   // 비엔나 커피
             else if (dropItem == 18) dropController.features = new bool[] { false, true, true, false, false, false, false};   // 딸기 케이크
             else if (dropItem == 19) dropController.features = new bool[] { false, true, true, false, false, false, false};   // 붕어빵
+
+            switch (dropItem)
+            {
+                case 0: case 1: case 2: case 3:
+                    dropController.seasonNum = 0;
+                    break;
+                case 4: case 5: case 6: case 7:
+                    dropController.seasonNum = 1;
+                    break;
+                case 8: case 9: case 10: case 11:
+                    dropController.seasonNum = 2;
+                    break;
+                case 12: case 13: case 14: case 15:
+                    dropController.seasonNum = 3;
+                    break;
+                case 16: case 17: case 18: case 19:
+                    dropController.seasonNum = 4;
+                    break;
+            }
+
             Debug.Log("");
             Debug.Log("계절: " + dropSeason);
             Debug.Log("아이템: " + dropItem);
@@ -86,4 +109,6 @@ public class ItemGenerator : MonoBehaviour
             drop.transform.position = new Vector3(dropX, 7, 0);
         }
     }
+
+  
 }

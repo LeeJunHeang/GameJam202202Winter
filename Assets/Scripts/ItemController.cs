@@ -13,11 +13,13 @@ public class ItemController : MonoBehaviour
 
     // 0: 아이스, 1: 핫, 2: 디저트, 3: 카페인, 4: 디카페인, 5: 괴식, 6: 민초
     public bool[] features;
+    public int seasonNum;
 
     // Start is called before the first frame update
     void Start()
     {
         this.player = GameObject.Find("player");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -38,7 +40,7 @@ public class ItemController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll){ //플레이어와 충돌하면
       if(coll.gameObject == this.player)
-        gameManager.calculate(); //점수 계산 
+        gameManager.calculate(features,seasonNum); //점수 계산 
         Debug.Log("야옹");
 
     }
