@@ -38,6 +38,8 @@ public class Season : MonoBehaviour
             GameObject.Find("BackGround").transform.Find("Fall").gameObject.SetActive(false);
             GameObject.Find("BackGround").transform.Find("Winter").gameObject.SetActive(false);
             Debug.Log("Spring");
+            for (int i = 0; i < 5; i++)
+                GameObject.Find("ItemGenerator").GetComponent<ItemGenerator>().seasonRatio[i] = season;
         }
         else if(timer > summerTime && season == 1)
         {
@@ -47,6 +49,8 @@ public class Season : MonoBehaviour
             GameObject.Find("BackGround").transform.Find("Fall").gameObject.SetActive(false);
             GameObject.Find("BackGround").transform.Find("Winter").gameObject.SetActive(false);
             Debug.Log("Summer");
+            for (int i = 0; i < 5; i++)
+                GameObject.Find("ItemGenerator").GetComponent<ItemGenerator>().seasonRatio[i] = season;
         }
         else if(timer > fallTime && season == 2)
         {
@@ -56,6 +60,8 @@ public class Season : MonoBehaviour
             GameObject.Find("BackGround").transform.Find("Fall").gameObject.SetActive(true);
             GameObject.Find("BackGround").transform.Find("Winter").gameObject.SetActive(false);
             Debug.Log("Fall");
+            for (int i = 0; i < 5; i++)
+                GameObject.Find("ItemGenerator").GetComponent<ItemGenerator>().seasonRatio[i] = season;
         }
         else if(timer > winterTime && season == 3) 
         {
@@ -65,11 +71,15 @@ public class Season : MonoBehaviour
             GameObject.Find("BackGround").transform.Find("Fall").gameObject.SetActive(false);
             GameObject.Find("BackGround").transform.Find("Winter").gameObject.SetActive(true);
             Debug.Log("Winter");
+            for (int i = 0; i < 5; i++)
+                GameObject.Find("ItemGenerator").GetComponent<ItemGenerator>().seasonRatio[i] = season;
         }
         else if(timer >= endYear && season == 4)
         {
             timer = 0.0f;
             season = 0;
+            for (int i = 0; i < 5; i++)
+                GameObject.Find("ItemGenerator").GetComponent<ItemGenerator>().seasonRatio[i] = season;
             endCount++;
         }
         
