@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Season : MonoBehaviour
 {
+    public GameManager GM;
+
     int season = 0; //계절 표시 
-    int endCount = 0;
+    public int endCount = 0;
 
     float timer;
     float springTime;
@@ -18,10 +21,10 @@ public class Season : MonoBehaviour
     {
         timer = 0.0f;
         springTime = 0.0f; //0~10 봄
-        summerTime = 10.0f; //10~30 여름
-        fallTime = 30.0f; //30~40 가을
-        winterTime = 40.0f; //40~60 겨울
-        endYear = 60.0f; //0으로 초기화. 
+        summerTime = 1.0f; //10~30 여름
+        fallTime = 3.0f; //30~40 가을
+        winterTime = 4.0f; //40~60 겨울
+        endYear = 6.0f; //0으로 초기화. 
         GameObject.Find("BackGround").transform.Find("Spring").gameObject.SetActive(true);
         GameObject.Find("BackGround").transform.Find("Summer").gameObject.SetActive(false);
         GameObject.Find("BackGround").transform.Find("Fall").gameObject.SetActive(false);
@@ -30,6 +33,7 @@ public class Season : MonoBehaviour
 
     void Update()
     {
+        
         timer += Time.deltaTime;
         if(timer > springTime && season == 0)
         {
@@ -82,7 +86,13 @@ public class Season : MonoBehaviour
             for (int i = 0; i < 5; i++)
                 GameObject.Find("ItemGenerator").GetComponent<ItemGenerator>().seasonRatio[i] = season;
             endCount++;
+            if(endCount == 4)
+            {
+                Debug.Log("END");
+                SceneManager.LoadScene("End");
+            }
         }
+        
         
     }
 
@@ -90,5 +100,4 @@ public class Season : MonoBehaviour
     {
         return season;
     }
-
 }

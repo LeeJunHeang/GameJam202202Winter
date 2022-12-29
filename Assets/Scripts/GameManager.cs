@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
 
     int age; // 플레이어 나이
     int player; //플레이어 특성 0: 괴식애호가 1: 얼죽아 2: 더죽뜨 3: 디저트 애호가 4: 카페인 애호가 5: 디카페인 애호가 6: 민초단 
-    float totalScore; //점수
+    public float totalScore; //점수
+    public float endScore; //점수
     int seasonNum; //계절 
     int itemNum;
 
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     public ItemGenerator itemGenerator; //아이템 넘버를 받아오기 위한 클래스
     
     public Text textScore; //점수 텍스트  
+    public Text EndScore; //최종 점수 텍스트  
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour
         }
 
         totalScore = 0;
+        endScore = 0;
         textScore.text = "Score : " + totalScore.ToString(); //처음엔 score 0
     }
 
@@ -146,7 +149,13 @@ public class GameManager : MonoBehaviour
         }
 
         totalScore += score;
-
+        endScore = totalScore;
         textScore.text = "Score : " + (totalScore.ToString()); //처음엔 score 0
+        EndScore.text = "End Score : " + (endScore.ToString());
+    }
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
     }
 }
