@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class Change : MonoBehaviour
 {
+    AudioSource audioSource;
+
     public int Check;
     public int Index = 0;
     void Start()
     {
-        
+        audioSource = this.gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -20,6 +22,7 @@ public class Change : MonoBehaviour
 
     public void SceneChange()
     {
+        audioSource.Play();
         if (Check == 0)
         {
             SceneManager.LoadScene("Explain");

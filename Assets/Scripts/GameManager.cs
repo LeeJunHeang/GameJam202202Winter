@@ -175,7 +175,10 @@ public class GameManager : MonoBehaviour
             score = -2;
         }
 
-        totalScore += (score+score_2) * 100;
+        totalScore += (score + score_2) * 100;
+        if (totalScore < 0)
+            totalScore = 0;
+
         endScore = totalScore;
         textScore.text = "Score : " + (totalScore.ToString()); //Ã³À½¿£ score 0
         EndScore.text = "End Score : " + (endScore.ToString());

@@ -7,6 +7,9 @@ public class Season : MonoBehaviour
 {
     public GameManager GM;
 
+    AudioSource audioSource;
+    public AudioClip[] bgMusic = new AudioClip[4];
+
     int season = 0; //계절 표시 
     public int endCount = 0;
 
@@ -19,6 +22,7 @@ public class Season : MonoBehaviour
 
     void Start()
     {
+        audioSource = this.gameObject.GetComponent<AudioSource>();
         timer = 0.0f;
         springTime = 0.0f; //0~10 봄
         summerTime = 1.0f; //10~30 여름
@@ -45,6 +49,8 @@ public class Season : MonoBehaviour
             Debug.Log("Spring");
             for (int i = 0; i < 5; i++)
                 GameObject.Find("ItemGenerator").GetComponent<ItemGenerator>().seasonRatio[i] = season;
+            audioSource.clip = bgMusic[season - 1];
+            audioSource.Play();
         }
         else if(timer > summerTime && season == 1)
         {
@@ -56,6 +62,8 @@ public class Season : MonoBehaviour
             Debug.Log("Summer");
             for (int i = 0; i < 5; i++)
                 GameObject.Find("ItemGenerator").GetComponent<ItemGenerator>().seasonRatio[i] = season;
+            audioSource.clip = bgMusic[season - 1];
+            audioSource.Play();
         }
         else if(timer > fallTime && season == 2)
         {
@@ -67,6 +75,8 @@ public class Season : MonoBehaviour
             Debug.Log("Fall");
             for (int i = 0; i < 5; i++)
                 GameObject.Find("ItemGenerator").GetComponent<ItemGenerator>().seasonRatio[i] = season;
+            audioSource.clip = bgMusic[season - 1];
+            audioSource.Play();
         }
         else if(timer > winterTime && season == 3) 
         {
@@ -78,6 +88,8 @@ public class Season : MonoBehaviour
             Debug.Log("Winter");
             for (int i = 0; i < 5; i++)
                 GameObject.Find("ItemGenerator").GetComponent<ItemGenerator>().seasonRatio[i] = season;
+            audioSource.clip = bgMusic[season - 1];
+            audioSource.Play();
         }
         else if(timer >= endYear && season == 4)
         {
