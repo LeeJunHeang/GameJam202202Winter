@@ -18,6 +18,8 @@ public class DontDestory : MonoBehaviour
         {
             GameObject.Find("Canvas").transform.Find("EndScore").gameObject.SetActive(true);
             GameObject.Find("Canvas").transform.Find("Score").gameObject.SetActive(false);
+            GameObject.Find("Canvas").transform.Find("BestScore").gameObject.SetActive(true);
+            GameObject.Find("Canvas").transform.Find("Title").gameObject.SetActive(false);
         }
     }
 

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     int player; //플레이어 특성 0: 괴식애호가 1: 얼죽아 2: 더죽뜨 3: 디저트 애호가 4: 카페인 애호가 5: 디카페인 애호가 6: 민초단 
     public float totalScore; //점수
     public float endScore; //점수
+    public float bestscores; // Best 점수
     int seasonNum; //계절 
     int itemNum;
 
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Text titleText; //칭호 텍스트
     public Text textScore; //점수 
     public Text EndScore; //최종 점수 텍스트  
+    public Text BestScore; // Best 점수 텍스트
 
     // Start is called before the first frame update
     void Start()
@@ -69,7 +71,7 @@ public class GameManager : MonoBehaviour
 
     public void calculate(bool[] features, int itemSeasonNum) //음식 특성에 따라 점수 계산하는 함수
     {
-        //플레이어 특성 0: 괴식애호가 1: 얼죽아 2: 더죽뜨 3: 디저트 애호가 4: 카페인 애호가 5: 디카페인 애호가 6: 민초단 
+        //플레이어 특성 0: 괴식애호가 1: 얼죽아 2: 더죽뜨 3: 디저트애호가 4: 카페인애호가 5: 디카페인애호가 6: 민초단 
         //features 0: 아이스, 1: 핫, 2: 디저트, 3: 카페인, 4: 디카페인, 5: 괴식, 6: 민초
         //itemSeasonNum 0: 공용, 1: 봄, 2: 여름, 3: 가을, 4: 겨울
         seasonNum = season.getSeasonNum(); //현재 계절 1 : 봄 2 : 여름 3 : 가을 4 : 겨울 
@@ -174,14 +176,19 @@ public class GameManager : MonoBehaviour
         {
             score = -2;
         }
-
         totalScore += (score + score_2) * 100;
         if (totalScore < 0)
             totalScore = 0;
-
         endScore = totalScore;
         textScore.text = "Score : " + (totalScore.ToString()); //처음엔 score 0
         EndScore.text = "End Score : " + (endScore.ToString());
+        bestscores = PlayerPrefs.GetFloat("Bestscore");
+        if (endScore > bestscores)
+        {
+            PlayerPrefs.SetFloat("Bestscore", endScore);
+        }
+        bestscores = PlayerPrefs.GetFloat("Bestscore");
+        BestScore.text = "Best Score : " + (bestscores.ToString());
     }
 
     private void Awake()
