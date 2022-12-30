@@ -8,6 +8,7 @@ public class Change : MonoBehaviour
 {
     AudioSource audioSource;
 
+    public bool mCheck;
     public int Check;
     public int Index = 0;
     void Start()
@@ -52,8 +53,15 @@ public class Change : MonoBehaviour
             }
             else if(Index == 4)
             {
-                SceneManager.LoadScene("Main");
-                Check++;
+                if(mCheck == false)
+                    SceneManager.LoadScene("Main");
+                else
+                {
+                    SceneManager.LoadScene("Mains");
+                    Time.timeScale = 1.0f;
+                }
+                    
+
             }
             Index++;
         }

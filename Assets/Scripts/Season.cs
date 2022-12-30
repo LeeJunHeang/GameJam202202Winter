@@ -20,15 +20,20 @@ public class Season : MonoBehaviour
     float winterTime;
     float endYear;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+
     void Start()
     {
         audioSource = this.gameObject.GetComponent<AudioSource>();
         timer = 0.0f;
         springTime = 0.0f; //0~10 봄
-        summerTime = 1.0f; //10~30 여름
-        fallTime = 3.0f; //30~40 가을
-        winterTime = 4.0f; //40~60 겨울
-        endYear = 6.0f; //0으로 초기화. 
+        summerTime = 5.0f; //10~30 여름
+        fallTime = 15.0f; //30~40 가을
+        winterTime = 20.0f; //40~60 겨울
+        endYear = 30.0f; //0으로 초기화. 
         GameObject.Find("BackGround").transform.Find("Spring").gameObject.SetActive(true);
         GameObject.Find("BackGround").transform.Find("Summer").gameObject.SetActive(false);
         GameObject.Find("BackGround").transform.Find("Fall").gameObject.SetActive(false);
@@ -102,6 +107,7 @@ public class Season : MonoBehaviour
             {
                 Debug.Log("END");
                 SceneManager.LoadScene("End");
+                GameObject.Find("Player").SetActive(false);
             }
         }
         

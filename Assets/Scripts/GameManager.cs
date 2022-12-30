@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
     public Text EndScore; //최종 점수 텍스트  
     public Text BestScore; // Best 점수 텍스트
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,13 +52,13 @@ public class GameManager : MonoBehaviour
                 titleText.text = "칭호 : 더죽뜨";
                 break;
             case 3:
-                titleText.text = "칭호 : 디저트 애호가";
+                titleText.text = "칭호 : 디저트애호가";
                 break;
             case 4:
-                titleText.text = "칭호 : 카페인 애호가";
+                titleText.text = "칭호 : 카페인애호가";
                 break;
             case 5:
-                titleText.text = "칭호 : 디카페인 애호가";
+                titleText.text = "칭호 : 디카페인애호가";
                 break;
             case 6:
                 titleText.text = "칭호 : 민초단";
@@ -191,8 +196,5 @@ public class GameManager : MonoBehaviour
         BestScore.text = "Best Score : " + (bestscores.ToString());
     }
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
+
 }

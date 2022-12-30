@@ -1,16 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public Season season;
 
+    public bool mainCheck = false;
     int playerSpeed = 10;
     int year;
 
     Rigidbody2D rid2D;
     Animator anim;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
 
     void Start()
     {
@@ -25,6 +33,12 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            SceneManager.LoadScene("Explains");
+            mainCheck = true;
+            Time.timeScale = 0.0f;
+        }
     }
 
     void Move()

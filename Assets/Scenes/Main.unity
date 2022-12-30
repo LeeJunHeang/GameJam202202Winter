@@ -847,7 +847,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 20, y: -20}
-  m_SizeDelta: {x: 429.84668, y: 80.59631}
+  m_SizeDelta: {x: 1000, y: 80.59631}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1197307481
 MonoBehaviour:
@@ -1405,6 +1405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   season: {fileID: 1842020434}
+  mainCheck: 0
 --- !u!58 &1866452800
 CircleCollider2D:
   m_ObjectHideFlags: 0
